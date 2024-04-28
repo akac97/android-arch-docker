@@ -5,9 +5,10 @@ FROM archlinux:base-devel
 WORKDIR /root
 
 # Combine all commands into a single RUN instruction
-RUN pacman -Syu --noconfirm unzip wget && \
-    wget https://dl.google.com/android/repository/commandlinetools-linux-7302050_latest.zip && \
-    unzip commandlinetools-linux-7302050_latest.zip -d /opt/android-sdk && \
+RUN pacman -Syu --noconfirm jdk17-openjdk unzip wget && \
+    archlinux-java set java-17-openjdk/jdk
+    wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip && \
+    unzip commandlinetools-linux-11076708_latest.zip -d /opt/android-sdk && \
     echo 'export PATH=$PATH:/opt/android-sdk/cmdline-tools/bin' >> ~/.bashrc && \
     source ~/.bashrc && \
     yes | sdkmanager --licenses && \
